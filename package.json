@@ -1,0 +1,20 @@
+{
+  "name": "crypto-bot",
+  "version": "1.0.0",
+  "description": "price alert for crypto currencies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aly Neumann",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bull": "^3.29.1",
+    "cron": "^1.8.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "nodemailer": "^6.6.3",
+    "nodemon": "^2.0.12"
+  }
+}
