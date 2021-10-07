@@ -1,15 +1,25 @@
 const axios = require("axios");
+require('dotenv').config()
+//TODO: could make this api call dynamic, user inputting the crypto id
 
 module.exports = async () => {
+  let apiKey = process.env.API_KEY;
   try {
     let url =
-    `https://api.nomics.com/v1/currencies/ticker?key=aa942a9f1059d52609331ca20feae8385afce67f&ids=BTC,ETH&interval=1d,30d&convert=EUR&per-page=100&page=1`;
+      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&ids=BTC,ETH,LTC,SHIB,HBAR,XLM,MANA,NANO,ADA&interval=1h,30d&convert=CAD&per-page=100&page=1`;
     const resp = await axios.get(url);
-    return {
-      error: false,
-      data: { BTC: resp.data[0].price, ETH: resp.data[1].price },
-    };
+    if (!resp.data) {
+      return { error: true };
+    }
+
+    return resp.data.map(crypto => {
+      return {
+          id: crypto.id,
+          price: crypto.price
+      };
+    })
+
   } catch (error) {
-     return { error: true };
+    return { error: true };
   }
 };
