@@ -2,10 +2,11 @@ const express = require("express");
 
 const router = express.Router();  
 
-const Controller = require("./controller");
+const Controller = require("./controllers/controller");
 
 router.get("/prices", Controller.CurrentPrice);  
 router.get("/alerts", Controller.GetAlerts);
 router.post("/alert", Controller.NewAlert);
+router.get("/price-changes", Controller.priceDifference);
 
 module.exports = router;  

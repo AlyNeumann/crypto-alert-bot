@@ -17,3 +17,9 @@ app.get("/", (req, res) => {
 
 app.listen(PORT,              
     () => console.log("Server started listening!"));  
+
+    //TODO:
+    //save current prices to DB
+    //call DB to compare to new current prices
+    //alert if exponential change
+    //call whale alerts api
