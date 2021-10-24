@@ -1,6 +1,5 @@
 const axios = require("axios");
 require('dotenv').config()
-//TODO: could make this api call dynamic, user inputting the crypto id
 
 module.exports = async () => {
   let apiKey = process.env.API_KEY;

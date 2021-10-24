@@ -19,7 +19,12 @@ app.listen(PORT,
     () => console.log("Server started listening!"));  
 
     //TODO:
-    //save current prices to DB
-    //call DB to compare to new current prices
+    //take twitter feed from Whale Stats & take all the coin symbols (filter using "up", "bought", "transferred")
+    //for "bought" - ALERT!
+    //for "up" & "transferred" - start watching prices (use the nomics api)
+    //save current prices from nomics to DB
+    //call DB to compare to new current prices every few minutes
     //alert if exponential change
-    //call whale alerts api
+    
+    //TODO: LATER
+    //some kind of news watch - web scraper - watch for news on certain coins 

@@ -1,5 +1,6 @@
 const currentPrice = require("../services/currentPrice");
 const priceDifference = require("../services/priceDifference")
+const whaleAlerts = require("../services/whaleAlerts");
 const { errorObject } = require("../config");
 const cryptoTypes = require("../models/cryptoTypes");
 const alerts = require("../services/alerts");
@@ -54,7 +55,7 @@ exports.CurrentPrice = async (req, res) => {
     }
   };
 
-  exports.priceDifference = async (req, res) => {
+  exports.PriceDifference = async (req, res) => {
     try {
       let prices = await priceDifference();
       if (prices.error) return res.status(500).json(errorObject);
@@ -62,5 +63,15 @@ exports.CurrentPrice = async (req, res) => {
       return res.status(200).json(prices);
     } catch (error) {
        return res.status(500).json(errorObject);
+    }
+  }
+
+  exports.GetWhales = async (req, res) => {
+    try {
+      let whales = await whaleAlerts();
+      console.log(whales)
+    }
+    catch (error) {
+      return res.status(500).json(errorObject);
     }
   }
