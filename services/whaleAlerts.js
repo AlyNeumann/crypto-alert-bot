@@ -1,11 +1,12 @@
 const axios = require("axios");
-require('dotenv').config();
 
 const WHALE_BOUGHT = 'bought';
 const WHALE_TRANSFER = 'transfer';
 const CURRENCY_UP = 'up';
 
 module.exports = async () => {
+    let user = process.env.DB_USER
+    console.log(user)
 
     try {
       let url =

@@ -1,5 +1,4 @@
 const axios = require("axios");
-require('dotenv').config()
 //This one compares last prices (from db) to current prices & check for exponential growth
 
 module.exports = async () => {
