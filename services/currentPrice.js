@@ -1,5 +1,6 @@
 const axios = require("axios");
 require('dotenv').config()
+//This one is for setting thresholds for buying & selling
 
 module.exports = async () => {
   let apiKey = process.env.API_KEY;

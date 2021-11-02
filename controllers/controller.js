@@ -69,7 +69,7 @@ exports.CurrentPrice = async (req, res) => {
   exports.GetWhales = async (req, res) => {
     try {
       let whales = await whaleAlerts();
-      console.log(whales)
+      return res.status(200).json(whales)
     }
     catch (error) {
       return res.status(500).json(errorObject);
