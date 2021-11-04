@@ -3,6 +3,7 @@ const axios = require("axios");
 
 module.exports = async () => {
   let apiKey = process.env.API_KEY;
+
   try {
     let url =
       `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&ids=BTC,ETH,LTC,SHIB,HBAR,XLM,MANA,NANO,ADA&interval=1h,30d&convert=CAD&per-page=100&page=1`;
