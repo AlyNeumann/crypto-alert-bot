@@ -16,7 +16,7 @@ module.exports = async () => {
     const coins = await formatCoins(coinsFound);
     console.log(coins)
      //TODO:Save to DB here - call data access layer - set up batches
-    const coinsSaved = await coinPricesData.saveCurrentPrices(coins);
+    const coinsSaved = await coinPricesData.saveCurrentPrices(coins.flat());
     console.log(coinsSaved)
     // return coins
 
@@ -34,9 +34,11 @@ const getCoinPrices = async (currentCoins) => {
 
   let i, j, coinChunk, chunk = 100;
   for (i = 0, j = currentCoins.length; i < j; i += chunk) {
+    console.log('loop ' + i)
     coinChunk = currentCoins.slice(i, i + chunk)
     let url = `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&ids=${coinChunk}&interval=1h,30d&convert=CAD&per-page=100&page=1`;
-    const resp = await axios.get(url);
+    const resp = await axios.get(encodeURI(url));
+    await sleep();
     coinsFound.push(resp.data)
   };
 
@@ -67,4 +69,8 @@ const formatCoins = async (coins) => {
     coinArr.push({ currency: coin.symbol, price: coin.price })
   })
   return coinArr;
+}
+
+const sleep = () => {
+  return new Promise(resolve => setTimeout(resolve, 1500));
 }
