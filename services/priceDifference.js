@@ -5,21 +5,18 @@ const coinPricesData = require("../data-access/coinPrices");
 //TODO: IF exponential growth is detected in first comparison (12 hour to start), do 24 hour and 7 day calculations to show in alert
 
 module.exports = async () => {
-  // let apiKey = process.env.API_KEY;
-
   let currentCoins = await getCurrentCoins();
 
   try {
     let coinsFound = await getCoinPrices(currentCoins);
-    console.log(coinsFound)
+    coinsFound = coinsFound.flat();
 
     const coins = await formatCoins(coinsFound);
-    console.log(coins)
-     //TODO:Save to DB here - call data access layer - set up batches
-    const coinsSaved = await coinPricesData.saveCurrentPrices(coins.flat());
-    console.log(coinsSaved)
-    // return coins
 
+    //TODO:Save to DB here - call data access layer - set up batches
+    const coinsSaved = await coinPricesData.saveCurrentPrices(coins);
+    console.log(coinsSaved)
+    return coins
 
   } catch (error) {
     console.log(error)
@@ -28,7 +25,7 @@ module.exports = async () => {
 };
 
 const getCoinPrices = async (currentCoins) => {
-  //TODO: this needs to be wrapped in setInterval - rate limits only allow one call per second
+  //this needs to be wrapped in setInterval - rate limits only allow one call per second
   let apiKey = process.env.API_KEY;
   let coinsFound = [];
 

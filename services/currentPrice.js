@@ -1,5 +1,5 @@
 const axios = require("axios");
-//This one is for setting thresholds for buying & selling
+//This one is for setting thresholds for buying & selling - check with cron job for priceDifference because they can't run at the same time!!!
 
 module.exports = async () => {
   let apiKey = process.env.API_KEY;
